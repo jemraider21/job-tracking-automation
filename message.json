@@ -1,4 +1,6 @@
-const Message {
+// File is intended to have error. This is to understand the metadata of a post
+
+Message {
     channel: TextChannel {
       type: 'text',
       deleted: false,
