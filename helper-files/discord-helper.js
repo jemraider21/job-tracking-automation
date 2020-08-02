@@ -13,24 +13,5 @@ const isURL = (str) => {
     return pattern.test(str);
 }
 
-// Checks to see if the link posted to Discord matches one in the Google Sheets file
-const isLinkInSheets = (msg, rows) =>{
-    let isInSheets = false;
-    rows.forEach(row => {
-        const content = msg.content;
-        const link = row[4];
-        if(content.includes(link)){
-            isInSheets = true;
-        }
-    });
-    if(isInSheets){
-        console.log("This application was already submitted before");
-    } else {
-        console.log("This application was not submitted before. Adding to the Google Sheets");
-    }
-}
-
-// Eports
 exports.token = token;
 exports.isURL = isURL;
-exports.isLinkInSheets = isLinkInSheets;
