@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const disClient = new Discord.Client;
-
+const hash = require("./hashing");
 const discordHelper = require("./helper-files/discord-helper");
 const sheetsHelper = require("./helper-files/gsheets-helper");
 
@@ -33,7 +33,7 @@ disClient.on("message", msg => {
     }
 });
 
-disClient.login(discordHelper.token);
+disClient.login(hash.decrypt(discordHelper.token));
 
 /**
  * Google Sheets functions

@@ -1,14 +1,17 @@
 const {google} = require('googleapis');
 const keys = require("../gsheets-keys.json");
-const sheetID = "1HXUE28xFrmh6EELEfZLj8F14ZQA1A7CdoudPEMbPU1k";
+const hash = require("../hashing");
+
+
+const sheetID = "U2FsdGVkX1/W1qKj+/B5Vu61PduxhtXOOj6BqSZcHS6JS8Cbmdql3rHMQ7smi3IaxoZ15gZVDQ0yeMICko2keA=="; // Hashed, needs to be decrypted
 const googleClient = new google.auth.JWT(
-    keys.client_email,
+    hash.decrypt(keys.client_email),
     null,
-    keys.private_key,
+    hash.decrypt(keys.private_key),
     ["https://www.googleapis.com/auth/spreadsheets"]
 );
 const gsapi = google.sheets({version: "v4", auth: googleClient});
-const opt= { spreadsheetId: sheetID, range: "Data!A2:F3"};
+const opt= { spreadsheetId: hash.decrypt(sheetID), range: "Data!A2:F3"};
 
 
 
