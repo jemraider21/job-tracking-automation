@@ -23,7 +23,10 @@ disClient.on("ready", () => {
 });
 
 disClient.on("message", msg => {
-    if(msg.channel.name === "bot-tester"){
+    // Change the value inside for the text channel you want the bot to work in
+    const textChannel = "bot-tester";
+
+    if(msg.channel.name === textChannel){ 
         // Check to see if post has a url inside
         let msgText = discordHelper.cleanMsg(msg.content);
         if(msgText === false){

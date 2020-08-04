@@ -1,6 +1,7 @@
 const {google} = require('googleapis');
 const keys = require("../JSON-files/gsheets-keys.json");
 const hash = require("../hashing-files/hashing");
+const fs = require("fs");
 
 
 const sheetID = "U2FsdGVkX1/W1qKj+/B5Vu61PduxhtXOOj6BqSZcHS6JS8Cbmdql3rHMQ7smi3IaxoZ15gZVDQ0yeMICko2keA=="; // Hashed, needs to be decrypted
@@ -28,6 +29,10 @@ const isLinkInSheets = (msg, rows) =>{
         console.log("This application was already submitted before");
     } else {
         console.log("This application was not submitted before. Adding to the Google Sheets");
+        fs.writeFile("urllink.txt", msg, err => {
+            if(err) return console.log(err);
+            console.log(`${msg} > urllink.txt`);
+        });
     }
 }
 
