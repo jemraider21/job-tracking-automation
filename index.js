@@ -23,22 +23,18 @@ disClient.on("ready", () => {
 });
 
 disClient.on("message", msg => {
-    // if(msg.channel.name === "jobs-i-applied-to"){
-    //     // Check to see if post is a url
-    //     let isMessageURL = discordHelper.isURL(msg.content);
-    //     if(isMessageURL){
-    //         console.log("This is a url");
-    //         sheetsHelper.isLinkInSheets(msg, dataArray);
-    //     } else {
-    //         console.log("This is not a url");
-    //     }
-    // } 
-    let msgText = discordHelper.cleanMsg(msg.content);
-    if(msgText === false){
-        console.log("This message does not have a link inside");
-    } else {
-        console.log(`Here is the link inside of the message: ${msgText}`);
-    }
+    if(msg.channel.name === "bot-tester"){
+        // Check to see if post has a url inside
+        let msgText = discordHelper.cleanMsg(msg.content);
+        if(msgText === false){
+            console.log("This message does not have a link inside");
+        } else {
+            console.log(`Here is the link inside of the message: ${msgText}`);
+            console.log("This is a url");
+            sheetsHelper.isLinkInSheets(msgText, dataArray);
+        }
+    } 
+    
 });
 
 disClient.login(hash.decrypt(discordHelper.token));

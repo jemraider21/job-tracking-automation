@@ -19,9 +19,8 @@ const opt= { spreadsheetId: hash.decrypt(sheetID), range: "Data!A2:F3"};
 const isLinkInSheets = (msg, rows) =>{
     let isInSheets = false;
     rows.forEach(row => {
-        const content = msg.content;
         const link = row[4];
-        if(content.includes(link)){
+        if(msg.includes(link)){
             isInSheets = true;
         }
     });
