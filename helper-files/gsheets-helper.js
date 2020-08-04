@@ -1,6 +1,6 @@
 const {google} = require('googleapis');
-const keys = require("../gsheets-keys.json");
-const hash = require("../hashing");
+const keys = require("../JSON-files/gsheets-keys.json");
+const hash = require("../hashing-files/hashing");
 
 
 const sheetID = "U2FsdGVkX1/W1qKj+/B5Vu61PduxhtXOOj6BqSZcHS6JS8Cbmdql3rHMQ7smi3IaxoZ15gZVDQ0yeMICko2keA=="; // Hashed, needs to be decrypted

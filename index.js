@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const disClient = new Discord.Client;
-const hash = require("./hashing");
+const hash = require("./hashing-files/hashing");
 const discordHelper = require("./helper-files/discord-helper");
 const sheetsHelper = require("./helper-files/gsheets-helper");
 
