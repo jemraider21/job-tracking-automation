@@ -27,14 +27,24 @@ disClient.on("message", msg => {
     const textChannel = "bot-tester";
 
     if(msg.channel.name === textChannel){ 
-        // Check to see if post has a url inside
-        let msgText = discordHelper.cleanMsg(msg.content);
-        if(msgText === false){
-            console.log("This message does not have a link inside");
-        } else {
-            console.log(`Here is the link inside of the message: ${msgText}`);
-            console.log("This is a url");
-            sheetsHelper.isLinkInSheets(msgText, dataArray);
+        // Checks to see if the post was not made by the bot
+        if(msg.author.username !== "job-tracker"){
+            // Check to see if post has a url inside
+            let msgText = discordHelper.cleanMsg(msg.content);
+            if(msgText === false){
+                console.log("This message does not have a link inside");
+            } else {
+                console.log(`Here is the link inside of the message: ${msgText}`);
+
+                // Check to see if the url is in the spreadsheet, then display the result to the console and the discord channel
+                let result = sheetsHelper.isLinkInSheets(msgText, dataArray);
+                console.log(result.text);
+                msg.reply(result.text);
+
+                if(!result.isIn){
+                    // Start web scrapping stuff
+                }
+            }
         }
     } 
     

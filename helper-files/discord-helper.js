@@ -1,7 +1,4 @@
 // Bot token to connect to server, hashed
-
-const { kgsearch } = require("googleapis/build/src/apis/kgsearch");
-
 // NOTE: After each commit to GitHub, the token gets reset, so you need to get a new token from here: https://discord.com/developers/applications/739171764046790788/bot
 const token = "U2FsdGVkX1/ULI7nyzRbqxBW3U+XLO3qjlrA0KXsPnEF12HjcEhQQvuCtUtmS6DnFmT5ahacN6rSekKGhMsPp2oGuC/qZlRDs0J8WlHfT5I="; 
 

@@ -1,7 +1,6 @@
 const {google} = require('googleapis');
 const keys = require("../JSON-files/gsheets-keys.json");
 const hash = require("../hashing-files/hashing");
-const fs = require("fs");
 
 
 const sheetID = "U2FsdGVkX1/W1qKj+/B5Vu61PduxhtXOOj6BqSZcHS6JS8Cbmdql3rHMQ7smi3IaxoZ15gZVDQ0yeMICko2keA=="; // Hashed, needs to be decrypted
@@ -19,6 +18,10 @@ const opt= { spreadsheetId: hash.decrypt(sheetID), range: "Data!A2:F3"};
 // Checks to see if the link posted to Discord matches one in the Google Sheets file
 const isLinkInSheets = (msg, rows) =>{
     let isInSheets = false;
+    let result = {
+        isIn: isInSheets,
+        text: ""
+    };
     rows.forEach(row => {
         const link = row[4];
         if(msg.includes(link)){
@@ -26,14 +29,13 @@ const isLinkInSheets = (msg, rows) =>{
         }
     });
     if(isInSheets){
-        console.log("This application was already submitted before");
+        result.isIn = isInSheets;
+        result.text = "This application was already submitted before";
     } else {
-        console.log("This application was not submitted before. Adding to the Google Sheets");
-        fs.writeFile("urllink.txt", msg, err => {
-            if(err) return console.log(err);
-            console.log(`${msg} > urllink.txt`);
-        });
+        result.isIn = isInSheets;
+        result.text = "This application was not submitted before. Adding to the Google Sheets";
     }
+    return result;
 }
 
 exports.googleClient = googleClient;
